@@ -1,0 +1,27 @@
+<div class="content">
+    <div class="loginBox">
+      <header class="loginBox__header">
+        <h2 class="header__title">Member Login</h2>
+      </header>
+        <form class="loginBox__form" [formGroup]="loginForm" (ngSubmit)="submitLogin()">
+        <mat-form-field class="form__field" appearance="fill">
+            <mat-label>Username</mat-label>
+            <input name='username' matInput type="text" formControlName="username" placeholder="User name" />
+            <mat-error *ngIf="loginForm.controls['username'].hasError('required')">
+                Username is <strong>required</strong>
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field class="form__field" appearance="fill">
+            <mat-label>Password</mat-label>
+            <input name='password' matInput type="password" formControlName="pass" placeholder="Password" />
+            <mat-error *ngIf="loginForm.controls['pass'].hasError('required')">
+                Password is <strong>required</strong>
+            </mat-error>
+        </mat-form-field>
+        <button name="loginButton" mat-raised-button class="button--login" color="primary" type="submit">
+            Sign in
+        </button>
+        </form>
+    </div>
+  
+</div>

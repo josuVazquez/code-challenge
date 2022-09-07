@@ -1,0 +1,6 @@
+<button class="close" [mat-dialog-close]="true">
+  <mat-icon>close</mat-icon>
+</button>
+<div mat-dialog-content class="content">
+  <mat-icon [color]="data.type">{{data.type}}</mat-icon> <span>{{data.message}}</span>
+</div>

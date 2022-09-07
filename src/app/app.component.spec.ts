@@ -1,12 +1,25 @@
 import { TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
+import { AppModule } from './app.module';
+import { TransactionsModule } from './modules/transactions/transactions.module';
 
 describe('AppComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [
-        RouterTestingModule
+        AppModule,
+        TransactionsModule,
+        RouterTestingModule.withRoutes([    {
+          path: 'transactions',
+          loadChildren: () => import('./modules/transactions/transactions.module').then(m => m.TransactionsModule),
+        },
+        {
+          path: 'login',
+          loadChildren: () => import('./modules/login/login.module').then(m => m.LoginModule)
+        },
+        { path: '**', redirectTo: 'transactions' }
+      ])
       ],
       declarations: [
         AppComponent
@@ -20,16 +33,5 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'code-challenge'`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app.title).toEqual('code-challenge');
-  });
 
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('code-challenge app is running!');
-  });
 });

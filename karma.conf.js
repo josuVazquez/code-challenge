@@ -32,6 +32,7 @@ module.exports = function (config) {
         { type: 'text-summary' }
       ]
     },
+    codeCoverageExclude: ["/**/*module.routing.ts"],
     reporters: ['progress', 'kjhtml'],
     port: 9876,
     colors: true,
